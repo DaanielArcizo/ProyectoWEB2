@@ -1,0 +1,43 @@
+{% extends 'todo/layout.html' %}
+
+{% block content %}
+
+<!-- Esto es para el fondo de la pantalla 
+<body style="background-color:darkolivegreen;"></body> -->
+
+    <h1 style="text-align: center;" class="text-black">Tareas Diarias</h1>
+
+    <!-- Botón de Agregar -->
+    <div class="mb-3">
+        <button class="btn btn-outline-secondary"><a href="{% url 'agregar' %}" class="text-black text-decoration-none">Agregar Tarea</a>
+    </div>
+
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <!-- Nombre de las columnas -->
+                <th scope="col"> # </th>
+                <th scope="col">Descripción</th>
+                <th scope="col"> </th>
+                <th scope="col"> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Contenido dentro de la columna -->
+            {% for tarea in tareas %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ tarea }}</td>
+                    <!-- Botón de Eliminar -->
+                    <td><button class="btn btn-outline-secondary"><a href="{% url 'eliminar' tarea.id %}" class="text-white text-decoration-none">Eliminar</a></button></td>
+                    <!-- Botón de Editar -->
+                    <td><button class="btn btn-outline-secondary"><a href="{% url 'editar' tarea.id %}" class="text-white text-decoration-none">Editar</a></button></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
+
+
+
+
